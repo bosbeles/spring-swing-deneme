@@ -12,19 +12,19 @@ public class ReloadClassCommand extends MergeableCommand {
     private static AgentLogger LOGGER = AgentLogger.getLogger(ReloadClassCommand.class);
     ClassLoader appClassLoader;
     String className;
-    Object testEnityService;
+    Object service;
 
     /**
      * @param appClassLoader   Usually you need the application classloader as a parameter - to know in which
      *                         classloader the class you want to call lives
      * @param className        reloaded className
-     * @param testEnityService the target service registered with the plugin - not that we are still in the
+     * @param service the target service registered with the plugin - not that we are still in the
      *                         plugin classloader and the service cannot be typed to agentexamples's class.
      */
-    public ReloadClassCommand(ClassLoader appClassLoader, String className, Object testEnityService) {
+    public ReloadClassCommand(ClassLoader appClassLoader, String className, Object service) {
         this.appClassLoader = appClassLoader;
         this.className = className;
-        this.testEnityService = testEnityService;
+        this.service = service;
     }
 
     @Override
@@ -33,9 +33,9 @@ public class ReloadClassCommand extends MergeableCommand {
             // Now we have application classloader and the service on which to invoke the method, we can use
             // reflection directly
             // but for demonstration purpose we invoke a plugin class, that lives in the application classloader
-            Method setExamplePluginResourceText = appClassLoader.loadClass(ReloadClassService.class.getName())
+            Method reloadedMethod = appClassLoader.loadClass(ReloadClassService.class.getName())
                     .getDeclaredMethod("classReloaded", String.class, Object.class);
-            setExamplePluginResourceText.invoke(null, className, testEnityService);
+            reloadedMethod.invoke(null, className, service);
         } catch (Exception e) {
             LOGGER.error("Error invoking {}.reload()", e, ReloadClassService.class.getName());
         }
@@ -68,7 +68,7 @@ public class ReloadClassCommand extends MergeableCommand {
     public String toString() {
         return "ReloadClassCommand{" +
                 "className='" + className + '\'' +
-                ", helloWorldService=" + testEnityService +
+                ", helloWorldService=" + service +
                 '}';
     }
 }

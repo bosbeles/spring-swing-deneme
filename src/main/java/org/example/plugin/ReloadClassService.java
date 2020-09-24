@@ -17,12 +17,12 @@ public class ReloadClassService {
     /**
      * Method invoked from ReloadClassCommand using reflection in application classloader.
      *
-     * @param className               class name
-     * @param helloWorldServiceObject object originally from the application, registered in the plugin. It is from
-     *                                application classloader and hence cannot be typed in plugin classloader. Now
-     *                                we are back in application classloader and can safely cast back to it's type.
+     * @param className class name
+     * @param mainPanel object originally from the application, registered in the plugin. It is from
+     *                  application classloader and hence cannot be typed in plugin classloader. Now
+     *                  we are back in application classloader and can safely cast back to it's type.
      */
-    public static void classReloaded(String className, Object helloWorldServiceObject) {
+    public static void classReloaded(String className, Object mainPanel) {
 
         // this is the main purpose of this class. Finally, we can use typed variables and
         // use normal code instead of reflection. Imagine more complex code to reload part of your
