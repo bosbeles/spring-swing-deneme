@@ -30,7 +30,7 @@ public class ExamplePlugin {
 
     // as an example, we will enhance this service to return content of examplePlugin.resource
     // and class load/reload counts in agentexamples's helloWorld service method
-    public static final String HELLO_WORLD_SERVICE = "org.example.gui.panel.MainPanel";
+    public static final String MAIN_PANEL = "org.example.gui.panel.MainPanel";
 
     // Agent logger is a very simple custom logging mechanism. Do not use any common logging framework
     // to avoid compatibility and classloading issues.
@@ -45,7 +45,7 @@ public class ExamplePlugin {
      * @param ctClass see @Transform javadoc for available parameter types. CtClass is convenient way
      *                to enhance method bytecode using javaasist
      */
-    @OnClassLoadEvent(classNameRegexp = HELLO_WORLD_SERVICE)
+    @OnClassLoadEvent(classNameRegexp = MAIN_PANEL)
     public static void transformTestEntityService(CtClass ctClass) throws NotFoundException, CannotCompileException {
 
         // You need always find a place from which to initialize the plugin.
@@ -64,7 +64,7 @@ public class ExamplePlugin {
         // to replace actual bytecode.
         ctClass.getDeclaredConstructor(new CtClass[0]).insertAfter(src);
 
-        LOGGER.debug(HELLO_WORLD_SERVICE + " has been enhanced.");
+        LOGGER.debug(MAIN_PANEL + " has been enhanced.");
     }
 
     /**
@@ -96,7 +96,7 @@ public class ExamplePlugin {
 
 
 
-    @OnClassFileEvent(classNameRegexp = HELLO_WORLD_SERVICE, events = {CREATE, MODIFY})
+    @OnClassFileEvent(classNameRegexp = MAIN_PANEL, events = {CREATE, MODIFY})
     public void changeClassFile(String className) {
         scheduler.scheduleCommand(new ReloadClassCommand(appClassLoader, className, mainPanel), 2000);
     }
