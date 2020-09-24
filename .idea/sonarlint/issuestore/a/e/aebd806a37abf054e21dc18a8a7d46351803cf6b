@@ -1,0 +1,13 @@
+
+Y
+java:S1854>"7Remove this useless assignment to local variable "src".(ö¶Ú‹ûÿÿÿÿ8îİÃŒÌ.
+g
+java:S1128"ERemove this unused import 'org.springframework.stereotype.Component'.(Ş÷Ñ¸ÿÿÿÿÿ8ŞÀêŒÌ.
+g
+java:S3008&"QRename this field "LOGGER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½»ÊÕ
+J
+java:S14817"(Remove this unused "src" local variable.(µöÛˆüÿÿÿÿ8îİÃŒÌ.
+®
+java:S11302"‹Remove the declaration of thrown exception 'org.hotswap.agent.javassist.CannotCompileException', as it cannot be thrown from method's body.(¹È°Ãıÿÿÿÿ8ŞÀêŒÌ.
+©
+java:S11302"†Remove the declaration of thrown exception 'org.hotswap.agent.javassist.NotFoundException', as it cannot be thrown from method's body.(¹È°Ãıÿÿÿÿ8õ°”Ì.
